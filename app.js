@@ -21,6 +21,10 @@ bot.use(async (ctx, next) => {
         if (ctx.message.text) {
             // remove command[@username] : /start@Pixiv_bot -> /start
             ctx.text = ctx.message.text
+            ctx.caption = ctx.message.caption
+            if (ctx.caption) {
+                ctx.text += ctx.caption;
+            }
             if (ctx.message.entities && ctx.text.startsWith('/')) {
                 ctx.command = ctx.message.text.substring(1, ctx.message.entities[0].length).replace(`@${bot.botInfo.username}`, '')
             }
